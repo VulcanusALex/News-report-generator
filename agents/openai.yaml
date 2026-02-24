@@ -1,0 +1,7 @@
+interface:
+  display_name: "Milan News Briefing"
+  short_description: "生成米兰每日新闻简报并管理新闻源"
+  default_prompt: "Use $milan-news-briefing to generate today's Milan briefing and update source pipelines if needed."
+
+policy:
+  allow_implicit_invocation: true
