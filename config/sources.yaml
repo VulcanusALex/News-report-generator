@@ -1,0 +1,103 @@
+timezone: Europe/Rome
+city: Milan
+
+render:
+  default_layout: editorial
+  section_order:
+    - weather
+    - strikes
+    - italian_news
+    - world_news
+    - ai_news
+    - milan_events
+
+weather:
+  provider: open_meteo
+  latitude: 45.4642
+  longitude: 9.19
+
+strikes:
+  lookahead_days: 20
+  sources:
+    - name: MIT Scioperi RSS
+      type: rss
+      url: https://scioperi.mit.gov.it/mit2/public/scioperi/rss
+      parser: italy_mit_strikes_rss_v1
+    - name: MIT Scioperi Web Fallback
+      type: html
+      url: https://scioperi.mit.gov.it/mit2/public/scioperi
+      parser: italy_mit_strikes_html_v1
+
+italian_news:
+  count: 5
+  only_today: true
+  fallback_days: 2
+  sources:
+    - name: ANSA
+      type: rss
+      url: https://www.ansa.it/sito/ansait_rss.xml
+    - name: Corriere della Sera
+      type: rss
+      url: https://xml2.corriereobjects.it/rss/homepage.xml
+    - name: La Repubblica
+      type: rss
+      url: https://www.repubblica.it/rss/homepage/rss2.0.xml
+    - name: Il Sole 24 Ore
+      type: rss
+      url: https://www.ilsole24ore.com/rss/primapagina.xml
+
+world_news:
+  count: 5
+  only_today: true
+  fallback_days: 2
+  sources:
+    - name: BBC World
+      type: rss
+      url: https://feeds.bbci.co.uk/news/world/rss.xml
+    - name: The Guardian World
+      type: rss
+      url: https://www.theguardian.com/world/rss
+    - name: New York Times World
+      type: rss
+      url: https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+    - name: NPR World
+      type: rss
+      url: https://feeds.npr.org/1004/rss.xml
+    - name: Al Jazeera
+      type: rss
+      url: https://www.aljazeera.com/xml/rss/all.xml
+
+ai_news:
+  count: 5
+  only_today: true
+  fallback_days: 3
+  sources:
+    - name: MIT Technology Review AI
+      type: rss
+      url: https://www.technologyreview.com/topic/artificial-intelligence/feed/
+    - name: VentureBeat AI
+      type: rss
+      url: https://venturebeat.com/ai/feed/
+    - name: The Verge AI
+      type: rss
+      url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    - name: arXiv CS.AI
+      type: rss
+      url: https://export.arxiv.org/rss/cs.AI
+
+milan_events:
+  count: 5
+  only_today: false
+  fallback_days: 30
+  sources:
+    # Web search for Milan art/exhibition events
+    - name: Web Search - Milano Mostre
+      type: search
+      url: "Milano mostre arte febbraio marzo 2026"
+      count: 10
+      country: IT
+    - name: Web Search - Milano Eventi Culturali
+      type: search
+      url: "Milano eventi culturali exposizioni 2026"
+      count: 5
+      country: IT
